@@ -1,6 +1,35 @@
 {
   "sahip": 6303967526,
   "offset": 19054679,
-  "bekleyen": {},
+  "bekleyen": {
+    "c1f57948": {
+      "id": "2026-11-25_01_spacex-ten-uzayda-1-milyon-uyduluk-yapay_tr",
+      "dil": "tr",
+      "video": "2026-11-25_01_spacex-ten-uzayda-1-milyon-uyduluk-yapay_tr.mp4",
+      "olusturma": "2026-11-25T18:18:10",
+      "durum": "onay_bekliyor",
+      "baslik": "SpaceX'ten Uzayda 1 Milyon Uyduluk Yapay Zeka Veri Merkezi",
+      "youtube_baslik": "SpaceX'ten Uzayda Yapay Zeka Hamlesi #Shorts",
+      "aciklama": "Elon Musk'ın şirketi SpaceX, uzayda 1 milyon uyduluk devasa bir yapay zeka veri merkezi kurmak için resmi onayı aldı.\n\n#yapayzeka #teknoloji #SpaceX #ElonMusk #Starmind #Shorts",
+      "senaryo": "SpaceX uzaya 1 milyon yapay zeka uydusu fırlatıyor! Amerikan Federal İletişim Komisyonu, Elon Musk'ın Starmind isimli dev projesine resmi izni verdi. Bu uyduların her biri yapay zeka çipleriyle donatılarak uzayda veri merkezi gibi çalışacak. Google ve Blue Origin de benzer uzay projeleri hazırlığında. Sizce uzayda veri merkezi kurulması mantıklı mı? Yorumlarda buluşalım, takipte kalın!",
+      "kaynaklar": [
+        {
+          "baslik": "FCC signs off on SpaceX’s plan to put up to 1 million data center satellites into space",
+          "url": "https://www.theverge.com/science/1042278/spacex-fcc-starmind-ai-space-data-centers",
+          "kaynak": "The Verge AI",
+          "tartisma": ""
+        }
+      ],
+      "dogrulanacaklar": [
+        "İlk uydu fırlatma tarihi ve kullanılacak spesifik yapay zeka çipleri"
+      ],
+      "ses": "erkek",
+      "tts_motoru": "edge-tts",
+      "sure_sn": 30.2,
+      "paylasim_sonuclari": {},
+      "file_id": "BAACAgQAAxkDAAMIawcmZMTj4aJGDHQINmHyH8Bmzz4AAiUkAAKDJDlQojLAFkWCSnk9BA",
+      "message_id": 8
+    }
+  },
   "gecmis": []
 }

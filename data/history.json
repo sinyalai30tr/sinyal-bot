@@ -1,0 +1,66 @@
+{
+  "items": {
+    "https://theverge.com/science/1042278/spacex-fcc-starmind-ai-space-data-centers": {
+      "title": "FCC signs off on SpaceX’s plan to put up to 1 million data center satellites into space",
+      "norm_title": "fcc signs off on spacex s plan to put up to 1 million data center satellites into space",
+      "date": "2026-11-25"
+    },
+    "https://variety.com/2026/music/news/tidal-bans-ai-generated-music-1236956924": {
+      "title": "Tidal bans AI-generated music",
+      "norm_title": "tidal bans ai generated music",
+      "date": "2026-11-25"
+    },
+    "https://arstechnica.com/ai/2026/11/tidal-will-ban-fully-ai-generated-music-on-december-9": {
+      "title": "Tidal announces ban on AI-generated music; 27 million tracks will be deleted",
+      "norm_title": "tidal announces ban on ai generated music 27 million tracks will be deleted",
+      "date": "2026-11-25"
+    },
+    "https://theverge.com/entertainment/1041362/tidal-ai-music-ban": {
+      "title": "Tidal will start banning AI-generated music next month",
+      "norm_title": "tidal will start banning ai generated music next month",
+      "date": "2026-11-25"
+    },
+    "https://webrazzi.com/2026/11/25/tidal-tamamen-yapay-zeka-uretimi-muzikleri-platformundan-kaldiriyor": {
+      "title": "Tidal, tamamen yapay zeka üretimi müzikleri platformundan kaldırıyor",
+      "norm_title": "tidal tamamen yapay zeka üretimi müzikleri platformundan kaldırıyor",
+      "date": "2026-11-25"
+    },
+    "https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats": {
+      "title": "State AGs fight Character AI’s plan to auction off users’ private chats",
+      "norm_title": "state ags fight character ai s plan to auction off users private chats",
+      "date": "2026-11-25"
+    },
+    "https://techcrunch.com/2026/11/25/want-to-buy-your-kid-an-ai-toy-this-christmas-not-in-new-york": {
+      "title": "Want to buy your kid an AI toy this Christmas? Not in New York.",
+      "norm_title": "want to buy your kid an ai toy this christmas not in new york",
+      "date": "2026-11-25"
+    },
+    "https://theverge.com/gadgets/1042162/nothing-ear-note-ai-earbuds-reveal": {
+      "title": "Nothing offers a full look at its AI earbuds and charging case",
+      "norm_title": "nothing offers a full look at its ai earbuds and charging case",
+      "date": "2026-11-25"
+    }
+  },
+  "topics": [
+    {
+      "title": "SpaceX'ten Uzayda 1 Milyon Uyduluk Yapay Zeka Veri Merkezi",
+      "date": "2026-11-25"
+    },
+    {
+      "title": "Tidal Yapay Zeka Müziklerini Siliyor",
+      "date": "2026-11-25"
+    },
+    {
+      "title": "Character.AI Özel Sohbetleri Satışa Çıkarıyor",
+      "date": "2026-11-25"
+    },
+    {
+      "title": "New York'ta Yapay Zekalı Çocuk Oyuncaklarına 5 Yıl Yasak",
+      "date": "2026-11-25"
+    },
+    {
+      "title": "Nothing'den Konuşmaları Özetleyen Yapay Zekalı Kulaklık",
+      "date": "2026-11-25"
+    }
+  ]
+}
