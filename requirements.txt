@@ -1,0 +1,12 @@
+feedparser>=6.0
+requests>=2.31
+PyYAML>=6.0
+python-dotenv>=1.0
+# Video
+edge-tts>=7.0
+numpy>=1.26
+Pillow>=10.0
+imageio-ffmpeg>=0.5
+# Sadece YouTube'a doğrudan API ile yükleyeceksen (Upload-Post kullanıyorsan gerekmez)
+google-api-python-client>=2.100
+google-auth-oauthlib>=1.2

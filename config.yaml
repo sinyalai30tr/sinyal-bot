@@ -1,0 +1,165 @@
+# =====================================================================
+#  AI Trend Stüdyosu - Ayarlar
+#  Kaynak eklemek/çıkarmak için sadece bu dosyayı düzenlemen yeterli.
+# =====================================================================
+
+genel:
+  saat_araligi: 36          # Son kaç saatin haberleri taransın
+  konu_sayisi: 5            # Günlük seçilecek konu sayısı (4-5 önerilir)
+  llm_aday_sayisi: 40       # Yapay zekâya gönderilecek en iyi aday sayısı
+  kaynak_basina_max: 8      # Tek kaynak aday listesini domine etmesin
+  gecmis_saklama_gun: 45    # Geçmiş kaydı kaç gün tutulsun
+  son_konular_gun: 7        # LLM'e "bunları yakın zamanda işledin" diye kaç günlük liste verilsin
+  cikti_klasoru: outputs
+  html_otomatik_ac: true    # Bitince sonucu tarayıcıda aç
+  gecmis_dosyasi: data/history.json
+  user_agent: "AITrendStudio/1.0 (kisisel icerik arastirma araci)"
+
+video:
+  aktif: true
+  konu_sayisi: 1            # Her gün kaç konunun videosu üretilsin (en iyi konudan başlar)
+  hedef_sure_sn: 30         # Video bu süreyi aşarsa konuşma otomatik hızlandırılır
+  diller: [tr]              # Video dilleri. İngilizce de istenirse: [tr, en]
+  kanal_adi: "@sinyalai30"  # Videonun köşesinde logonun yanında görünür
+  muzik_sesi: 0.22          # Arka plan müziği seviyesi (0-1). assets/music/ içine kendi parçanı koyabilirsin
+  kodlama_hizi: veryfast    # ffmpeg preset: veryfast (hızlı) | medium (daha küçük dosya)
+
+tts:
+  motor: edge               # edge = Microsoft Edge Türkçe sesleri (ücretsiz, internet gerekir)
+  hiz: "+8%"                # Konuşma hızı; Shorts için hafif hızlı iyi olur
+  # İnternetsiz yedek (isteğe bağlı): Piper Türkçe ses modeli (.onnx) yolu
+  piper_model: ""          # Türkçe
+  piper_model_en: ""       # İngilizce (ör. en_US-lessac-medium.onnx)
+  piper_length_scale: 0.95
+
+studyo:
+  port: 8765
+
+llm:
+  saglayici: otomatik         # otomatik = Hesaplar sayfasında hangi anahtar varsa | gemini | anthropic | openai
+  gemini_model: gemini-flash-latest   # Ücretsiz Gemini modeli (Google her zaman güncel Flash'a yönlendirir)
+  gemini_yedek_modeller: [gemini-flash-lite-latest]   # Ana model yoğunsa sırayla denenir
+  model: claude-sonnet-5-5
+  # OpenAI-uyumlu servis kullanıyorsan base_url doldur, örnekler:
+  #   Ollama (yerel):  http://localhost:11434/v1
+  #   OpenAI:          https://api.openai.com/v1   (boş bırakılırsa bu kullanılır)
+  base_url: ""
+  max_tokens: 14000           # Sadece anthropic için (TR + EN sürümler için geniş tutuldu)
+  sicaklik: 0.7
+  # OpenAI-uyumlu isteklere eklenecek ek parametreler (gerekirse):
+  #   openai_ek_parametreler: {max_tokens: 8000}
+  openai_ek_parametreler: {}
+
+# Genel kaynaklarda (ör. teknoloji haberleri) bir haberin "AI haberi" sayılması için
+# başlık/özette bu kelimelerden en az biri geçmeli.
+anahtar_kelimeler:
+  - AI
+  - yapay zeka
+  - yapay zekâ
+  - LLM
+  - GPT
+  - ChatGPT
+  - OpenAI
+  - Anthropic
+  - Claude
+  - Gemini
+  - DeepMind
+  - Llama
+  - Mistral
+  - DeepSeek
+  - Qwen
+  - Grok
+  - Copilot
+  - Midjourney
+  - Stable Diffusion
+  - Sora
+  - Veo
+  - Runway
+  - ElevenLabs
+  - Perplexity
+  - Hugging Face
+  - Nvidia
+  - machine learning
+  - neural
+  - chatbot
+  - agent
+  - agentic
+  - generative
+
+# Başlıkta geçerse "yeni araç / güncelleme" sinyali sayılır, puanı biraz artırır.
+sinyal_kelimeleri:
+  - launch
+  - launches
+  - released
+  - releases
+  - introduces
+  - introducing
+  - announces
+  - unveils
+  - open source
+  - open-source
+  - now available
+  - new model
+  - update
+  - duyurdu
+  - tanıttı
+  - yayınladı
+  - yeni
+
+kaynaklar:
+  # --- RSS / Atom akışları ---
+  # agirlik: kaynağın güvenilirlik/önem çarpanı (haber siteleri ~2, blog ~1.5)
+  # anahtar_kelime_sart: true ise sadece AI kelimesi içeren haberler alınır
+  # aktif: false yaparak kaynağı silmeden kapatabilirsin
+  rss:
+    - ad: TechCrunch AI
+      url: https://techcrunch.com/category/artificial-intelligence/feed/
+      agirlik: 2.0
+    - ad: The Verge AI
+      url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+      agirlik: 2.0
+    - ad: VentureBeat AI
+      url: https://venturebeat.com/category/ai/feed/
+      agirlik: 1.8
+    - ad: Ars Technica AI
+      url: https://arstechnica.com/ai/feed/
+      agirlik: 1.8
+    - ad: MIT Technology Review AI
+      url: https://www.technologyreview.com/topic/artificial-intelligence/feed
+      agirlik: 1.6
+    - ad: OpenAI News
+      url: https://openai.com/news/rss.xml
+      agirlik: 2.2
+    - ad: Google AI Blog
+      url: https://blog.google/technology/ai/rss/
+      agirlik: 2.0
+    - ad: Hugging Face Blog
+      url: https://huggingface.co/blog/feed.xml
+      agirlik: 1.5
+    - ad: Product Hunt
+      url: https://www.producthunt.com/feed
+      agirlik: 1.3
+      anahtar_kelime_sart: true
+    - ad: Webrazzi
+      url: https://webrazzi.com/feed/
+      agirlik: 1.5
+      anahtar_kelime_sart: true
+
+  # --- Hacker News (Algolia API, anahtar gerekmez) ---
+  hackernews:
+    aktif: true
+    agirlik: 1.0
+    min_puan: 60
+    sorgular: [AI, LLM, OpenAI, Anthropic, Claude, Gemini, GPT, "open source model"]
+
+  # --- Reddit (anahtarsız JSON; olmazsa otomatik RSS'e düşer) ---
+  reddit:
+    aktif: false              # Reddit girişsiz istekleri engelliyor; şimdilik kapalı
+    agirlik: 1.0
+    subredditler:
+      - {ad: LocalLLaMA, min_skor: 150}
+      - {ad: OpenAI, min_skor: 200}
+      - {ad: ClaudeAI, min_skor: 150}
+      - {ad: singularity, min_skor: 300}
+      - {ad: artificial, min_skor: 100}
+      - {ad: technology, min_skor: 1000, anahtar_kelime_sart: true}
