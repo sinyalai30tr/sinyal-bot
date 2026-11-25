@@ -18,11 +18,12 @@ class Telegram:
         self.token = token
         self.base = f"https://api.telegram.org/bot{token}"
 
-    def call(self, method: str, files: dict | None = None, timeout: int = 120, **params):
+    def call(self, method: str, files: dict | None = None, http_timeout: int = 120, **params):
+        # Not: Telegram'ın kendi "timeout" parametresiyle karışmasın diye bağlantı süresi http_timeout
         # reply_markup gibi sözlükler JSON metni olarak gönderilmeli
         data = {k: (json.dumps(v, ensure_ascii=False) if isinstance(v, (dict, list)) else v)
                 for k, v in params.items() if v is not None}
-        r = requests.post(f"{self.base}/{method}", data=data, files=files, timeout=timeout)
+        r = requests.post(f"{self.base}/{method}", data=data, files=files, timeout=http_timeout)
         try:
             j = r.json()
         except ValueError as e:
@@ -39,7 +40,7 @@ class Telegram:
 
     def send_video(self, chat_id, path: Path, caption: str, reply_markup=None):
         with open(path, "rb") as f:
-            return self.call("sendVideo", files={"video": (path.name, f, "video/mp4")}, timeout=600,
+            return self.call("sendVideo", files={"video": (path.name, f, "video/mp4")}, http_timeout=600,
                              chat_id=chat_id, caption=caption[:1024], parse_mode="HTML",
                              supports_streaming="true", reply_markup=reply_markup)
 
