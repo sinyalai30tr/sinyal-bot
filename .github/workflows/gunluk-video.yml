@@ -1,0 +1,47 @@
+# Her sabah 08:00'de (Türkiye) günün videosunu üretir ve Telegram'a gönderir.
+# Actions sekmesinden "Run workflow" ile elle de çalıştırılabilir.
+name: Gunluk video
+
+on:
+  schedule:
+    - cron: "0 5 * * *"   # 05:00 UTC = 08:00 Türkiye
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sinyal-bot        # Kontrol iş akışıyla aynı anda çalışmasın
+  cancel-in-progress: false
+
+jobs:
+  uret:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Paketleri kur
+        run: pip install -r requirements.txt
+
+      - name: Video uret ve Telegram'a gonder
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          UPLOAD_POST_API_KEY: ${{ secrets.UPLOAD_POST_API_KEY }}
+          UPLOAD_POST_USER: ${{ secrets.UPLOAD_POST_USER }}
+        run: python bot.py gunluk
+
+      - name: Durumu kaydet
+        if: always()
+        run: |
+          git config user.name "sinyal-bot"
+          git config user.email "sinyal-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || (git commit -m "bot: gunluk durum" && git pull --rebase && git push)
