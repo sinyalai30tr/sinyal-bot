@@ -1,0 +1,54 @@
+# 10 dakikada bir Telegram'ı kontrol eder: Onayla/Reddet butonları, "yeni video" isteği,
+# açıklama düzenleme. Gece 01:00-07:00 arası (Türkiye) çalışmaz.
+name: Telegram kontrol
+
+on:
+  schedule:
+    - cron: "*/10 4-21 * * *"   # 07:00-00:59 Türkiye
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sinyal-bot
+  cancel-in-progress: false
+
+jobs:
+  kontrol:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      UPLOAD_POST_API_KEY: ${{ secrets.UPLOAD_POST_API_KEY }}
+      UPLOAD_POST_USER: ${{ secrets.UPLOAD_POST_USER }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Hafif paketleri kur
+        run: pip install requests PyYAML python-dotenv
+
+      - name: Telegram mesajlarini isle
+        id: k
+        run: python bot.py kontrol
+
+      - name: Yeni video istendiyse uret
+        if: steps.k.outputs.video == '1'
+        run: |
+          pip install -r requirements.txt
+          python bot.py gunluk
+
+      - name: Durumu kaydet
+        if: always()
+        run: |
+          git config user.name "sinyal-bot"
+          git config user.email "sinyal-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || (git commit -m "bot: kontrol durum" && git pull --rebase && git push)
