@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import time
 from pathlib import Path
 
 import requests
@@ -17,20 +18,35 @@ class Telegram:
             raise TelegramError("TELEGRAM_BOT_TOKEN tanımlı değil.")
         self.token = token
         self.base = f"https://api.telegram.org/bot{token}"
+        self.skipped_updates = False  # Okunamayan (takılmış) mesajlar atlandıysa True
 
     def call(self, method: str, files: dict | None = None, http_timeout: int = 120, **params):
         # Not: Telegram'ın kendi "timeout" parametresiyle karışmasın diye bağlantı süresi http_timeout
         # reply_markup gibi sözlükler JSON metni olarak gönderilmeli
         data = {k: (json.dumps(v, ensure_ascii=False) if isinstance(v, (dict, list)) else v)
                 for k, v in params.items() if v is not None}
-        r = requests.post(f"{self.base}/{method}", data=data, files=files, timeout=http_timeout)
-        try:
-            j = r.json()
-        except ValueError as e:
-            raise TelegramError(f"{method}: HTTP {r.status_code}") from e
-        if not j.get("ok"):
-            raise TelegramError(f"{method}: {j.get('description', 'bilinmeyen hata')}")
-        return j["result"]
+        # Telegram'ın anlık sunucu hatalarında (502/503/504, bağlantı kopması) birkaç kez tekrar dene.
+        # Dosya gönderiminde dosya bir kez okunduğu için tekrar denenmez.
+        attempts = 1 if files else 3
+        last = ""
+        for i in range(attempts):
+            try:
+                r = requests.post(f"{self.base}/{method}", data=data, files=files, timeout=http_timeout)
+            except (requests.ConnectionError, requests.Timeout) as e:
+                last = f"bağlantı hatası ({e.__class__.__name__})"
+            else:
+                try:
+                    j = r.json()
+                except ValueError:
+                    j = {"ok": False, "description": f"HTTP {r.status_code}"}
+                if j.get("ok"):
+                    return j["result"]
+                last = j.get("description", "bilinmeyen hata")
+                if r.status_code not in (429, 500, 502, 503, 504):
+                    break  # Kalıcı hata (yanlış anahtar vb.): tekrar denemenin anlamı yok
+            if i < attempts - 1:
+                time.sleep(3 * (i + 1))
+        raise TelegramError(f"{method}: {last}")
 
     # --- Mesajlar ---
     def send_message(self, chat_id, text: str, reply_markup=None, reply_to: int | None = None):
@@ -55,8 +71,22 @@ class Telegram:
             return None  # Eski (süresi geçmiş) butonlarda Telegram hata verebilir; önemsiz
 
     def get_updates(self, offset: int = 0):
-        return self.call("getUpdates", offset=offset, timeout=0,
-                         allowed_updates=["message", "callback_query"])
+        """Yeni mesajları getirir. Telegram tarafında takılmış bir mesaj okunamıyorsa
+        önce tek tek okumayı dener, o da olmazsa birikmiş mesajları atlar (self.skipped_updates)."""
+        try:
+            return self.call("getUpdates", offset=offset, timeout=0,
+                             allowed_updates=["message", "callback_query"])
+        except TelegramError as e:
+            if "Unauthorized" in str(e) or "Not Found" in str(e):
+                raise  # Anahtar hatası: atlamak çözüm değil
+        try:
+            return self.call("getUpdates", offset=offset, timeout=0, limit=1)
+        except TelegramError as e:
+            if "Unauthorized" in str(e) or "Not Found" in str(e):
+                raise
+        # Son çare: birikmiş mesajları atla (offset=-1 sadece en son mesajı getirir)
+        self.skipped_updates = True
+        return self.call("getUpdates", offset=-1, timeout=0)
 
     # --- Dosya ---
     def download(self, file_id: str, dest: Path) -> Path:
