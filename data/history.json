@@ -39,6 +39,36 @@
       "title": "Nothing offers a full look at its AI earbuds and charging case",
       "norm_title": "nothing offers a full look at its ai earbuds and charging case",
       "date": "2026-11-25"
+    },
+    "https://theverge.com/tech/1042071/meta-amazon-muse-ai-shopping-discussions": {
+      "title": "Amazon is reportedly in talks to end Muse AI shopping block",
+      "norm_title": "amazon is reportedly in talks to end muse ai shopping block",
+      "date": "2026-11-26"
+    },
+    "https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse": {
+      "title": "Amazon and Meta reportedly in talks to lift blockade on AI agent Muse",
+      "norm_title": "amazon and meta reportedly in talks to lift blockade on ai agent muse",
+      "date": "2026-11-26"
+    },
+    "https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work": {
+      "title": "OpenAI says heavy ChatGPT users may hit limits sooner as it merges Chat and Work",
+      "norm_title": "openai says heavy chatgpt users may hit limits sooner as it merges chat and work",
+      "date": "2026-11-26"
+    },
+    "https://webrazzi.com/2026/11/25/anthropic-claude-ile-olusturulan-araclari-masaustu-uygulamasina-donusturuyor": {
+      "title": "Anthropic, Claude ile oluşturulan araçları masaüstü uygulamasına dönüştürüyor",
+      "norm_title": "anthropic claude ile oluşturulan araçları masaüstü uygulamasına dönüştürüyor",
+      "date": "2026-11-26"
+    },
+    "https://webrazzi.com/2026/11/25/meta-yapay-zeka-asistani-museu-instagramin-mesajlasma-bolumune-entegre-etti": {
+      "title": "Meta, yapay zeka asistanı Muse'u Instagram'ın mesajlaşma bölümüne entegre etti",
+      "norm_title": "meta yapay zeka asistanı muse u instagram ın mesajlaşma bölümüne entegre etti",
+      "date": "2026-11-26"
+    },
+    "https://producthunt.com/products/magi-1": {
+      "title": "MAGI-2",
+      "norm_title": "magi 2",
+      "date": "2026-11-26"
     }
   },
   "topics": [
@@ -61,6 +91,26 @@
     {
       "title": "Nothing'den Konuşmaları Özetleyen Yapay Zekalı Kulaklık",
       "date": "2026-11-25"
+    },
+    {
+      "title": "Amazon ve Meta, Muse AI İçin Masada",
+      "date": "2026-11-26"
+    },
+    {
+      "title": "OpenAI'dan Kullanım Sınırı Uyarısı",
+      "date": "2026-11-26"
+    },
+    {
+      "title": "Anthropic'ten Claude ile Uygulama Dönüşümü",
+      "date": "2026-11-26"
+    },
+    {
+      "title": "Meta Muse Instagram DM'de",
+      "date": "2026-11-26"
+    },
+    {
+      "title": "Sand AI'dan Sinematik Model MAGI-2",
+      "date": "2026-11-26"
     }
   ]
 }

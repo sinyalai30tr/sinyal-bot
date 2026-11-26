@@ -29,6 +29,40 @@
       "paylasim_sonuclari": {},
       "file_id": "BAACAgQAAxkDAAMIawcmZMTj4aJGDHQINmHyH8Bmzz4AAiUkAAKDJDlQojLAFkWCSnk9BA",
       "message_id": 8
+    },
+    "078c7df5": {
+      "id": "2026-11-26_01_amazon-ve-meta-muse-ai-icin-masada_tr",
+      "dil": "tr",
+      "video": "2026-11-26_01_amazon-ve-meta-muse-ai-icin-masada_tr.mp4",
+      "olusturma": "2026-11-26T05:50:24",
+      "durum": "onay_bekliyor",
+      "baslik": "Amazon ve Meta, Muse AI İçin Masada",
+      "youtube_baslik": "Amazon ve Meta Anlaşması #Shorts",
+      "aciklama": "Amazon ve Meta, Muse AI alışveriş engeli için görüşmelere başladı.\n\n#yapayzeka #teknoloji #Amazon #Meta #MuseAI #Shorts",
+      "senaryo": "Meta'nın alışveriş asistanı Muse engeli aşıyor mu? Amazon ve Meta, Muse'un pazar yerindeki ablukasını bitirmek için masaya oturdu. Peki bu anlaşma e-ticaret devlerini nasıl etkiler? Yapay zeka alışverişi değiştiriyor mu? Takip etmeyi unutma.",
+      "kaynaklar": [
+        {
+          "baslik": "Amazon is reportedly in talks to end Muse AI shopping block",
+          "url": "https://www.theverge.com/tech/1042071/meta-amazon-muse-ai-shopping-discussions",
+          "kaynak": "The Verge AI",
+          "tartisma": ""
+        },
+        {
+          "baslik": "Amazon and Meta reportedly in talks to lift blockade on AI agent Muse",
+          "url": "https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse/",
+          "kaynak": "TechCrunch AI",
+          "tartisma": ""
+        }
+      ],
+      "dogrulanacaklar": [
+        "Görüşmelerin resmi olarak sonuçlanıp sonuçlanmadığı kontrol edilecek."
+      ],
+      "ses": "erkek",
+      "tts_motoru": "edge-tts",
+      "sure_sn": 20.5,
+      "paylasim_sonuclari": {},
+      "file_id": "BAACAgQAAxkDAAMOawfIoePsFbqcTReJSPsLU3msTYsAAqoeAAKDJEFQuBs4YuvKHRg9BA",
+      "message_id": 14
     }
   },
   "gecmis": []
