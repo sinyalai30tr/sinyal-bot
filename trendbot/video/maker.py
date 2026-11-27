@@ -81,6 +81,8 @@ def make_video(topic: dict, videos_dir: Path, cfg: dict, date_str: str, index: i
     raw_scenes = scenes_from_topic(topic)
     log(f"  Video [{lang.upper()}]: '{topic.get('baslik')}' ({len(raw_scenes)} sahne, {gender} ses)")
 
+    meta_render = {"kategori": topic.get("kategori", ""), "dil": lang,
+                   "kaynak_notu": topic.get("kaynak_notu") or _source_note(topic, lang)}
     try:
         # 1) Her sahneyi ayrı seslendir -> sahne süreleri kesin olur.
         #    Hedef süre aşılırsa konuşmayı hızlandırıp bir kez daha dener (en fazla %22).
@@ -116,8 +118,7 @@ def make_video(topic: dict, videos_dir: Path, cfg: dict, date_str: str, index: i
 
         # 3) Görüntü + kodlama
         out_mp4 = videos_dir / f"{stem}.mp4"
-        meta_render = {"kanal_adi": vcfg.get("kanal_adi", ""), "kategori": topic.get("kategori", ""),
-                       "kaynak_notu": topic.get("kaynak_notu") or _source_note(topic, lang), "dil": lang}
+        meta_render["kanal_adi"] = vcfg.get("kanal_adi", "")
         render(tl, meta_render, mix_wav, out_mp4, log, preset=vcfg.get("kodlama_hizi", "veryfast"))
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
@@ -141,6 +142,10 @@ def make_video(topic: dict, videos_dir: Path, cfg: dict, date_str: str, index: i
         "tts_motoru": engine,
         "sure_sn": round(total, 1),
         "paylasim_sonuclari": {},
+        # Kendi sesinle yeniden üretim için gerekenler:
+        "sahneler": raw_scenes,
+        "kategori": topic.get("kategori", ""),
+        "kaynak_notu": meta_render["kaynak_notu"],
     }
     (videos_dir / f"{stem}.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     log(f"  [OK] {out_mp4.name} ({total:.0f} sn, ses motoru: {engine})")
@@ -155,3 +160,78 @@ def _source_note(topic: dict, lang: str = "tr") -> str:
             names.append(first)
     label = "Source: " if lang == "en" else "Kaynak: "
     return (label + ", ".join(names[:2])) if names else ""
+
+
+# ---------------------------------------------------------------------------
+# Kendi sesinle seslendirme: kullanıcının sesli mesajıyla videoyu yeniden üretir
+# ---------------------------------------------------------------------------
+def _trim_and_level(x):
+    """Baştaki/sondaki sessizliği kırpar ve ses seviyesini dengeler."""
+    import numpy as np
+    if len(x) == 0:
+        raise ValueError("Ses kaydı boş")
+    env = audio._lowpass(np.abs(x), int(0.05 * audio.SR))
+    thr = max(env.max() * 0.08, 1e-4)
+    idx = np.where(env > thr)[0]
+    if len(idx) == 0:
+        raise ValueError("Ses kaydında konuşma bulunamadı")
+    a = max(0, idx[0] - int(0.12 * audio.SR))
+    b = min(len(x), idx[-1] + int(0.2 * audio.SR))
+    x = x[a:b]
+    rms = float(np.sqrt(np.mean(x ** 2))) or 1e-6
+    x = x * min(8.0, 0.11 / rms)            # Konuşmayı hedef seviyeye getir
+    peak = float(np.abs(x).max())
+    return x / peak * 0.95 if peak > 0.95 else x
+
+
+def remake_with_voice(meta: dict, voice_file: Path, videos_dir: Path, cfg: dict,
+                      log: Callable[[str], None] = print) -> dict:
+    """Var olan bir videonun meta bilgisini ve kullanıcının ses kaydını alır,
+    videoyu bu sesle yeniden üretir. Yeni meta sözlüğünü döndürür."""
+    from ..video.tts import estimate_word_times
+    from .ffmpeg import to_wav
+
+    vcfg = cfg.get("video", {})
+    raw_scenes = meta.get("sahneler") or scenes_from_topic(
+        {"senaryo": meta.get("senaryo", ""), "ekran_basligi": meta.get("youtube_baslik", "").replace(" #Shorts", "")})
+    stem = f"{meta['id']}_kendisesim"
+    tmp = videos_dir / f".tmp_{stem}"
+    tmp.mkdir(parents=True, exist_ok=True)
+    try:
+        voice = _trim_and_level(audio.read_wav(to_wav(voice_file, tmp / "ses.wav")))
+        dur = len(voice) / audio.SR
+        # Sahne süreleri, her sahnenin kelime sayısıyla orantılı paylaştırılır
+        counts = [max(1, len(str(s.get("seslendirme", "")).split())) for s in raw_scenes]
+        total_words = sum(counts)
+        scenes, t = [], 0.0
+        for i, (s, c) in enumerate(zip(raw_scenes, counts)):
+            span = dur * c / total_words
+            words = [(w, t + a, t + b) for w, a, b in estimate_word_times(str(s.get("seslendirme", "")), span)]
+            tip = s.get("tip") if s.get("tip") in TIPLER else ("hook" if i == 0 else "bilgi")
+            scenes.append(Scene(tip, str(s.get("ekran") or ""), t, t + span, words, ACCENTS[i % len(ACCENTS)]))
+            t += span
+        total = dur + TAIL
+        scenes[-1].end = total
+        tl = Timeline(scenes, total)
+        log(f"  Kendi sesinle: {dur:.1f} sn kayıt, {len(scenes)} sahne")
+
+        seed = sum(map(ord, stem))
+        sfx = [(0.0, audio.pop())] + [(max(0.0, sc.start - 0.15), audio.whoosh(seed=i)) for i, sc in enumerate(scenes[1:])]
+        music = audio.load_music(ROOT / "assets" / "music", total, seed)
+        mix = audio.mix(total, [(0.0, voice)], music, sfx, float(vcfg.get("muzik_sesi", 0.22)))
+        mix_wav = audio.write_wav(tmp / "mix.wav", mix)
+        out_mp4 = videos_dir / f"{stem}.mp4"
+        render(tl, {"kanal_adi": vcfg.get("kanal_adi", ""), "kategori": meta.get("kategori", ""),
+                    "kaynak_notu": meta.get("kaynak_notu", ""), "dil": meta.get("dil", "tr")},
+               mix_wav, out_mp4, log, preset=vcfg.get("kodlama_hizi", "veryfast"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    new = dict(meta)
+    new.update({"id": stem, "video": out_mp4.name, "ses": "kendi sesin", "tts_motoru": "kendi sesin",
+                "sure_sn": round(total, 1), "olusturma": datetime.now().isoformat(timespec="seconds")})
+    for k in ("file_id", "message_id"):
+        new.pop(k, None)
+    (videos_dir / f"{stem}.json").write_text(json.dumps(new, ensure_ascii=False, indent=2), encoding="utf-8")
+    log(f"  [OK] {out_mp4.name} ({total:.0f} sn, kendi sesin)")
+    return new

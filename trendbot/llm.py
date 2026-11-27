@@ -39,6 +39,8 @@ def _post_with_retry(url: str, headers: dict, payload: dict, timeout: int = 180,
 
 
 GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/openai"
+# Ana model yoğunsa sırayla denenecek diğer ücretsiz modeller (biri kalkmışsa atlanır)
+GEMINI_EXTRA_FALLBACKS = ["gemini-flash-lite-latest", "gemini-3.1-flash-lite", "gemini-2.5-flash"]
 
 
 def _keys() -> dict:
@@ -84,7 +86,8 @@ def complete(system: str, user: str, cfg: dict) -> str:
         # Ücretsiz modeller yoğun saatlerde "503 high demand" verebiliyor:
         # her modeli birkaç kez bekleyerek dener, olmazsa sıradaki modele geçer.
         models = [cfg.get("gemini_model", "gemini-flash-latest")] + list(
-            cfg.get("gemini_yedek_modeller", ["gemini-flash-lite-latest"]))
+            cfg.get("gemini_yedek_modeller", [])) + GEMINI_EXTRA_FALLBACKS
+        models = list(dict.fromkeys(m for m in models if m))  # Tekrarları at, sırayı koru
         last: Exception | None = None
         for m in models:
             try:
