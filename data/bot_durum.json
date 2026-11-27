@@ -1,7 +1,71 @@
 {
   "sahip": 6303967526,
-  "offset": 203154947,
-  "bekleyen": {},
+  "offset": 203154948,
+  "bekleyen": {
+    "3de79ccc": {
+      "id": "2026-11-27_01_nvidia-dort-ulkeye-sevkiyati-durdurdu_tr",
+      "dil": "tr",
+      "video": "2026-11-27_01_nvidia-dort-ulkeye-sevkiyati-durdurdu_tr.mp4",
+      "olusturma": "2026-11-27T18:08:17",
+      "durum": "onay_bekliyor",
+      "baslik": "Nvidia Dört Ülkeye Sevkiyatı Durdurdu",
+      "youtube_baslik": "Nvidia Sevkiyatları Neden Durdurdu? #Shorts",
+      "aciklama": "Nvidia, ABD kısıtlamaları nedeniyle Malezya, Singapur, Tayland ve Endonezya'ya yapay zeka sunucu sevkiyatını askıya aldı.\n\n#yapayzeka #teknoloji #Nvidia #donanim #haber #Shorts",
+      "senaryo": "Nvidia Asya'da tam dört ülkeye yapay zeka sevkiyatını aniden durdurdu! Şirket; Malezya, Singapur, Tayland ve Endonezya'ya giden sunucu gönderimlerini ortaklarına verdiği talimatla tamamen askıya aldı. Peki perde arkasında ne var? Asıl hedef, gelişmiş yapay zeka çiplerinin Çin'in eline geçmesini engellemek. Amerika Birleşik Devletleri kısıtlamaları sıkılaştırdıkça, küresel donanım pazarında dengeler hızla değişiyor. Sizce bu yasaklar Çin'i durdurabilir mi? Görüşlerinizi yazın, takip etmeyi unutmayın!",
+      "kaynaklar": [
+        {
+          "baslik": "Nvidia hits pause on chip shipments to Southeast Asia",
+          "url": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/",
+          "kaynak": "TechCrunch AI",
+          "tartisma": ""
+        },
+        {
+          "baslik": "Nvidia, Güneydoğu Asya'daki dört ülkeye yapay zeka sunucusu göndermeyi durdurdu",
+          "url": "https://webrazzi.com/2026/11/27/nvidia-guneydogu-asya-daki-dort-ulkeye-yapay-zeka-sunucusu-gondermeyi-durdurdu/",
+          "kaynak": "Webrazzi",
+          "tartisma": ""
+        }
+      ],
+      "dogrulanacaklar": [
+        "Sevkiyat durdurma kararının geçici bir inceleme mi yoksa kalıcı bir ambargo mu olduğu netleştirilmeli."
+      ],
+      "ses": "erkek",
+      "tts_motoru": "edge-tts",
+      "sure_sn": 31.7,
+      "paylasim_sonuclari": {},
+      "sahneler": [
+        {
+          "tip": "hook",
+          "ekran": "Nvidia Sevkiyatları Durdurdu",
+          "seslendirme": "Nvidia Asya'da tam dört ülkeye yapay zeka sevkiyatını aniden durdurdu!"
+        },
+        {
+          "tip": "bilgi",
+          "ekran": "Dört Ülkeye Sevkiyat Durdu",
+          "seslendirme": "Şirket; Malezya, Singapur, Tayland ve Endonezya'ya giden sunucu gönderimlerini ortaklarına verdiği talimatla tamamen askıya aldı."
+        },
+        {
+          "tip": "soru",
+          "ekran": "Peki Sebep Ne?",
+          "seslendirme": "Peki perde arkasında ne var? Asıl hedef, gelişmiş yapay zeka çiplerinin Çin'in eline geçmesini engellemek."
+        },
+        {
+          "tip": "bilgi",
+          "ekran": "Tedarik Zinciri Gergin",
+          "seslendirme": "Amerika Birleşik Devletleri kısıtlamaları sıkılaştırdıkça, küresel donanım pazarında dengeler hızla değişiyor."
+        },
+        {
+          "tip": "kapanis",
+          "ekran": "Yorumunuzu Yazın",
+          "seslendirme": "Sizce bu yasaklar Çin'i durdurabilir mi? Görüşlerinizi yazın, takip etmeyi unutmayın!"
+        }
+      ],
+      "kategori": "Sektör Haberi",
+      "kaynak_notu": "Kaynak: TechCrunch AI, Webrazzi",
+      "file_id": "BAACAgQAAxkDAAMHawnHEmvBtbgQ-kbYKSQ7HnL3XHoAAg4jAAJ-zVFQDFP_MnCwk_w9BA",
+      "message_id": 7
+    }
+  },
   "gecmis": [],
   "ses_isleri": [],
   "yeni_video_istendi": false,

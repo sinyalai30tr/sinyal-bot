@@ -69,6 +69,36 @@
       "title": "MAGI-2",
       "norm_title": "magi 2",
       "date": "2026-11-26"
+    },
+    "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia": {
+      "title": "Nvidia hits pause on chip shipments to Southeast Asia",
+      "norm_title": "nvidia hits pause on chip shipments to southeast asia",
+      "date": "2026-11-27"
+    },
+    "https://webrazzi.com/2026/11/27/nvidia-guneydogu-asya-daki-dort-ulkeye-yapay-zeka-sunucusu-gondermeyi-durdurdu": {
+      "title": "Nvidia, Güneydoğu Asya'daki dört ülkeye yapay zeka sunucusu göndermeyi durdurdu",
+      "norm_title": "nvidia güneydoğu asya daki dört ülkeye yapay zeka sunucusu göndermeyi durdurdu",
+      "date": "2026-11-27"
+    },
+    "https://webrazzi.com/2026/11/27/sap-en-az-10-bin-calisanini-isten-cikarabilir": {
+      "title": "SAP, en az 10 bin çalışanını işten çıkarabilir",
+      "norm_title": "sap en az 10 bin çalışanını işten çıkarabilir",
+      "date": "2026-11-27"
+    },
+    "https://techstackups.com/articles/google-workspace-ai-agents-mcp": {
+      "title": "Google Will Make AI Agents Use Its MCP Servers. The Gmail One Can't Send Email",
+      "norm_title": "google will make ai agents use its mcp servers the gmail one can t send email",
+      "date": "2026-11-27"
+    },
+    "https://thetimes.com/uk/technology-uk/article/ai-making-online-security-useless-smr73d3n8": {
+      "title": "AI on brink of making online security useless, mathematicians fear",
+      "norm_title": "ai on brink of making online security useless mathematicians fear",
+      "date": "2026-11-27"
+    },
+    "https://webrazzi.com/2026/11/27/tarayici-icinde-calisan-acik-kaynakli-yapay-zeka-ajani-webbrain": {
+      "title": "Tarayıcı içinde çalışan açık kaynaklı yapay zeka ajanı: WebBrain",
+      "norm_title": "tarayıcı içinde çalışan açık kaynaklı yapay zeka ajanı webbrain",
+      "date": "2026-11-27"
     }
   },
   "topics": [
@@ -111,6 +141,26 @@
     {
       "title": "Sand AI'dan Sinematik Model MAGI-2",
       "date": "2026-11-26"
+    },
+    {
+      "title": "Nvidia Dört Ülkeye Sevkiyatı Durdurdu",
+      "date": "2026-11-27"
+    },
+    {
+      "title": "SAP'de 10 Bin Kişilik Yapay Zeka Dönüşümü",
+      "date": "2026-11-27"
+    },
+    {
+      "title": "Google'ın E-Posta Gönderemeyen Gmail Ajanı",
+      "date": "2026-11-27"
+    },
+    {
+      "title": "Yapay Zeka İnternet Güvenliğini Çökertebilir mi?",
+      "date": "2026-11-27"
+    },
+    {
+      "title": "Tarayıcıda Çalışan Açık Kaynak Ajan: WebBrain",
+      "date": "2026-11-27"
     }
   ]
 }
