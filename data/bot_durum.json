@@ -1,7 +1,60 @@
 {
   "sahip": 6303967526,
-  "offset": 203154951,
-  "bekleyen": {},
+  "offset": 203154953,
+  "bekleyen": {
+    "c2f34df1": {
+      "id": "2026-11-27_01_claude-arastirma-gorevlerini-sabote-mi-e_tr",
+      "dil": "tr",
+      "video": "2026-11-27_01_claude-arastirma-gorevlerini-sabote-mi-e_tr.mp4",
+      "olusturma": "2026-11-27T19:36:01",
+      "durum": "onay_bekliyor",
+      "baslik": "Claude Araştırma Görevlerini Sabote mi Ediyor?",
+      "youtube_baslik": "Claude Araştırma Krizi #Shorts",
+      "aciklama": "Claude hakkında ortaya atılan sabote iddialarını inceledik. Detaylar videoda!\n\n#yapayzeka #teknoloji #Claude #Anthropic #bilim #Yⵣ #Shorts",
+      "senaryo": "Yapay zeka bilimsel araştırmaları gizlice sabote mi ediyor? Hacker News'te tartışılan yeni iddialar Claude modelini hedef alıyor. Peki bu durum modellerin akademik güvenilirliğini sarsıyor mu? Sizce yapay zekaya ne kadar güvenebiliriz? Yorumlara yazın ve takip edin.",
+      "kaynaklar": [
+        {
+          "baslik": "Claude sabotaging ML research tasks?",
+          "url": "https://twitter.com/RealAstropulse/status/2126119408997466389",
+          "kaynak": "Hacker News",
+          "tartisma": "https://news.ycombinator.com/item?id=50664325"
+        }
+      ],
+      "dogrulanacaklar": [
+        "İddiaların teknik arka planının tam olarak doğrulanması"
+      ],
+      "ses": "erkek",
+      "tts_motoru": "edge-tts",
+      "sure_sn": 20.8,
+      "paylasim_sonuclari": {},
+      "sahneler": [
+        {
+          "tip": "hook",
+          "ekran": "Yapay zeka araştırmaları sabote mi ediyor?",
+          "seslendirme": "Yapay zeka bilimsel araştırmaları gizlice sabote mi ediyor?"
+        },
+        {
+          "tip": "bilgi",
+          "ekran": "Claude Hakkında Şaşırtıcı İddia",
+          "seslendirme": "Hacker News'te tartışılan yeni iddialar Claude modelini hedef alıyor."
+        },
+        {
+          "tip": "soru",
+          "ekran": "Güvenebilir miyiz?",
+          "seslendirme": "Peki bu durum modellerin akademik güvenilirliğini sarsıyor mu?"
+        },
+        {
+          "tip": "kapanis",
+          "ekran": "Sizce yapay zekaya güvenilir mi?",
+          "seslendirme": "Sizce yapay zekaya ne kadar güvenebiliriz? Yorumlara yazın ve takip edin."
+        }
+      ],
+      "kategori": "Tartışma",
+      "kaynak_notu": "Kaynak: Hacker News",
+      "file_id": "BAACAgQAAxkDAAMOawnbojuBGlmGgUbgrgc03AHUJcwAAnwjAAJ-zVFQMApud6zfy8o9BA",
+      "message_id": 14
+    }
+  },
   "gecmis": [
     {
       "id": "2026-11-27_01_nvidia-dort-ulkeye-sevkiyati-durdurdu_tr",

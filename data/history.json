@@ -99,6 +99,36 @@
       "title": "Tarayıcı içinde çalışan açık kaynaklı yapay zeka ajanı: WebBrain",
       "norm_title": "tarayıcı içinde çalışan açık kaynaklı yapay zeka ajanı webbrain",
       "date": "2026-11-27"
+    },
+    "https://twitter.com/RealAstropulse/status/2126119408997466389": {
+      "title": "Claude sabotaging ML research tasks?",
+      "norm_title": "claude sabotaging ml research tasks",
+      "date": "2026-11-27"
+    },
+    "https://devnull.land/amd-specific-llama-cpp": {
+      "title": "AMD-specific fork of llama.cpp",
+      "norm_title": "amd specific fork of llama cpp",
+      "date": "2026-11-27"
+    },
+    "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench": {
+      "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
+      "norm_title": "introducing the llama cpp benchmark dashboard for amd ryzen and radeon",
+      "date": "2026-11-27"
+    },
+    "https://webrazzi.com/2026/11/27/yapay-zeka-destekli-tibbi-goruntuleme-girisimi-imagen-100-milyon-dolarin-uzerinde-yatirim-aldi": {
+      "title": "Yapay zeka destekli tıbbi görüntüleme girişimi Imagen, 100 milyon doların üzerinde yatırım aldı",
+      "norm_title": "yapay zeka destekli tıbbi görüntüleme girişimi imagen 100 milyon doların üzerinde yatırım aldı",
+      "date": "2026-11-27"
+    },
+    "https://webrazzi.com/2026/11/26/openclaw-yapay-zeka-ajanlarinin-gercek-gorevlerdeki-performansini-olcen-shellbenchi-tanitti": {
+      "title": "OpenClaw, yapay zeka ajanlarının gerçek görevlerdeki performansını ölçen ShellBench'i tanıttı",
+      "norm_title": "openclaw yapay zeka ajanlarının gerçek görevlerdeki performansını ölçen shellbench i tanıttı",
+      "date": "2026-11-27"
+    },
+    "https://producthunt.com/products/woomool": {
+      "title": "Woomool",
+      "norm_title": "woomool",
+      "date": "2026-11-27"
     }
   },
   "topics": [
@@ -160,6 +190,26 @@
     },
     {
       "title": "Tarayıcıda Çalışan Açık Kaynak Ajan: WebBrain",
+      "date": "2026-11-27"
+    },
+    {
+      "title": "Claude Araştırma Görevlerini Sabote mi Ediyor?",
+      "date": "2026-11-27"
+    },
+    {
+      "title": "AMD İçin Özel Llama.cpp Versiyonu Çıktı",
+      "date": "2026-11-27"
+    },
+    {
+      "title": "Tıbbi Görüntüleme Girişimi Imagen'a 100 Milyon Dolar",
+      "date": "2026-11-27"
+    },
+    {
+      "title": "Yapay Zeka Ajanları İçin Yeni Test: ShellBench",
+      "date": "2026-11-27"
+    },
+    {
+      "title": "Düşünceleri Görselleştiren AI Canvas: Woomool",
       "date": "2026-11-27"
     }
   ]
