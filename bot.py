@@ -33,6 +33,9 @@ except Exception:  # noqa: BLE001
     pass
 
 STATE_PATH = ROOT / "data" / "bot_durum.json"
+LISTEN_MINUTES = 30      # Onay bekleyen video varken Telegram'ı canlı dinleme süresi (dk)
+JOB_BUDGET_MIN = 40      # GitHub işinin toplam süre sınırı 45 dk; güvenli pay bırak
+JOB_START_FILE = Path(tempfile.gettempdir()) / "sinyal_is_baslangic"
 MAX_RETRY = 3            # Yapay zekâ yoğunsa kaç kez otomatik tekrar denensin
 OFFER_OWN_VOICE = False  # True yapılırsa her videonun altında "kendi sesinle oku" mesajı gönderilir
 VIDEO_WORDS = ("yeni video", "/video", "video yap", "video üret", "video uret")
@@ -246,10 +249,10 @@ def handle_decision(tg: Telegram, state: dict, cb: dict) -> None:
                             "zaman": datetime.now().isoformat(timespec="seconds")})
 
 
-def cmd_kontrol(tg: Telegram, state: dict) -> bool:
+def cmd_kontrol(tg: Telegram, state: dict, wait: int = 0) -> bool:
     """Yeni Telegram güncellemelerini işler. Yeni video istendiyse True döndürür."""
     want_video = False
-    updates = tg.get_updates(state["offset"])
+    updates = tg.get_updates(state["offset"], wait=wait)
     if tg.skipped_updates and state.get("sahip"):
         print("  Telegram'da okunamayan mesajlar atlandı")
         tg.send_message(state["sahip"], "⚠️ Telegram'da takılan birkaç mesajını okuyamadım. "
@@ -316,8 +319,34 @@ def cmd_kontrol(tg: Telegram, state: dict) -> bool:
     return want_video or bool(state.get("yeni_video_istendi"))
 
 
+def listen(tg: Telegram, state: dict, minutes: int = LISTEN_MINUTES) -> bool:
+    """Onay bekleyen video varken Telegram'ı canlı dinler: butona basıldığı anda işler.
+    Bekleyen kalmazsa, süre dolarsa ya da yeni video istenirse durur. Yeni video istendiyse True."""
+    import time
+    # Aynı GitHub işi içindeki tüm adımlar toplam süre sınırını paylaşır
+    started = float(JOB_START_FILE.read_text()) if JOB_START_FILE.exists() else time.time()
+    left = JOB_BUDGET_MIN * 60 - (time.time() - started) - 60
+    minutes = min(minutes, max(0, int(left // 60)))
+    if minutes <= 0:
+        return False
+    end = time.time() + minutes * 60
+    print(f"Canlı dinleme: en fazla {minutes} dk (onay bekleyen: {len(state['bekleyen'])})")
+    while state["bekleyen"] and time.time() < end:
+        try:
+            if cmd_kontrol(tg, state, wait=min(50, max(5, int(end - time.time())))):
+                return True
+        except TelegramError as e:
+            print(f"  Dinlerken Telegram hatası: {e}")
+            time.sleep(10)
+        save_state(state)  # Her turdan sonra kaydet: iş yarıda kesilse de kayıp olmasın
+    return False
+
+
 def main() -> int:
     mode = sys.argv[1] if len(sys.argv) > 1 else "kontrol"
+    if not JOB_START_FILE.exists():
+        import time
+        JOB_START_FILE.write_text(str(time.time()))
     token = os.getenv("TELEGRAM_BOT_TOKEN", "")
     tg = Telegram(token)
     state = load_state()
@@ -333,8 +362,14 @@ def main() -> int:
     try:
         if mode == "gunluk":
             cmd_gunluk(tg, state, skip_generate="--uretme" in sys.argv)
+            # Video gönderildiyse kapanmadan onayını bekle (butona bastığın anda paylaşılır)
+            if os.getenv("GITHUB_ACTIONS") and state["bekleyen"] and listen(tg, state):
+                cmd_gunluk(tg, state)  # Beklerken "yeni video" istendiyse hemen hazırla
         elif mode == "kontrol":
-            set_output("video", "1" if cmd_kontrol(tg, state) else "0")
+            want = cmd_kontrol(tg, state)
+            if not want and os.getenv("GITHUB_ACTIONS") and state["bekleyen"]:
+                want = listen(tg, state)
+            set_output("video", "1" if want else "0")
         else:
             print(__doc__)
             return 1

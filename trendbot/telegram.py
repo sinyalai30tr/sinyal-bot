@@ -70,9 +70,12 @@ class Telegram:
         except TelegramError:
             return None  # Eski (süresi geçmiş) butonlarda Telegram hata verebilir; önemsiz
 
-    def get_updates(self, offset: int = 0):
+    def get_updates(self, offset: int = 0, wait: int = 0):
         """Yeni mesajları getirir. Telegram tarafında takılmış bir mesaj okunamıyorsa
         önce tek tek okumayı dener, o da olmazsa birikmiş mesajları atlar (self.skipped_updates)."""
+        if wait:  # Uzun bekleme: Telegram yeni mesaj gelene kadar (en fazla `wait` sn) cevabı bekletir
+            return self.call("getUpdates", http_timeout=wait + 20, offset=offset, timeout=wait,
+                             allowed_updates=["message", "callback_query"])
         try:
             return self.call("getUpdates", offset=offset, timeout=0,
                              allowed_updates=["message", "callback_query"])
