@@ -129,6 +129,31 @@
       "title": "Woomool",
       "norm_title": "woomool",
       "date": "2026-11-27"
+    },
+    "https://janlukas.blog/posts/ai-self-hosting": {
+      "title": "AI made self-hosting fun again",
+      "norm_title": "ai made self hosting fun again",
+      "date": "2026-11-28"
+    },
+    "https://drmahfouz.substack.com/p/woman-evicted-after-landlords-ai": {
+      "title": "Woman evicted after landlord's AI assistant told her she could delay rent",
+      "norm_title": "woman evicted after landlord s ai assistant told her she could delay rent",
+      "date": "2026-11-28"
+    },
+    "https://huggingface.co/blog/video-trainium3": {
+      "title": "Taking Trainium3 to the Track: Generating Videos with LTX-2.5",
+      "norm_title": "taking trainium3 to the track generating videos with ltx 2 5",
+      "date": "2026-11-28"
+    },
+    "https://producthunt.com/products/depost-ai": {
+      "title": "Depost AI",
+      "norm_title": "depost ai",
+      "date": "2026-11-28"
+    },
+    "https://producthunt.com/products/onset": {
+      "title": "Onset",
+      "norm_title": "onset",
+      "date": "2026-11-28"
     }
   },
   "topics": [
@@ -211,6 +236,26 @@
     {
       "title": "Düşünceleri Görselleştiren AI Canvas: Woomool",
       "date": "2026-11-27"
+    },
+    {
+      "title": "Yapay zeka ile kendi sunucunu kurmak artık çok kolay",
+      "date": "2026-11-28"
+    },
+    {
+      "title": "Yapay zeka yüzünden evinden atıldı",
+      "date": "2026-11-28"
+    },
+    {
+      "title": "Trainium3 ile video üretimi",
+      "date": "2026-11-28"
+    },
+    {
+      "title": "LinkedIn için yapay zeka ajanı",
+      "date": "2026-11-28"
+    },
+    {
+      "title": "YouTube içerik üreticileri için AI desteği",
+      "date": "2026-11-28"
     }
   ]
 }

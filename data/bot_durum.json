@@ -1,6 +1,6 @@
 {
   "sahip": 6303967526,
-  "offset": 203154955,
+  "offset": 203154956,
   "bekleyen": {},
   "gecmis": [
     {
@@ -20,6 +20,15 @@
         "instagram": true
       },
       "zaman": "2026-11-28T04:58:07"
+    },
+    {
+      "id": "2026-11-28_01_yapay-zeka-ile-kendi-sunucunu-kurmak-art_tr",
+      "karar": "onay",
+      "sonuc": {
+        "youtube": true,
+        "instagram": true
+      },
+      "zaman": "2026-11-28T05:56:36"
     }
   ],
   "ses_isleri": [],
