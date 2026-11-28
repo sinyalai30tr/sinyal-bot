@@ -154,6 +154,31 @@
       "title": "Onset",
       "norm_title": "onset",
       "date": "2026-11-28"
+    },
+    "https://theverge.com/tech/1041801/android-intelligence-create-my-widget-gemini": {
+      "title": "Android’s DIY widgets are a bit of vibe-coding fun",
+      "norm_title": "android s diy widgets are a bit of vibe coding fun",
+      "date": "2026-11-28"
+    },
+    "https://construct22.com": {
+      "title": "Group chat where your AI talks behind your back",
+      "norm_title": "group chat where your ai talks behind your back",
+      "date": "2026-11-28"
+    },
+    "https://producthunt.com/products/ploid": {
+      "title": "Ploid",
+      "norm_title": "ploid",
+      "date": "2026-11-28"
+    },
+    "https://generativehistory.substack.com/p/gpt-62-astra-solves-a-historical": {
+      "title": "GPT 6.2 Astra solves a historical mystery",
+      "norm_title": "gpt 6 2 astra solves a historical mystery",
+      "date": "2026-11-28"
+    },
+    "https://thesoapbox.email/archive/3": {
+      "title": "I'm Scared of AI",
+      "norm_title": "i m scared of ai",
+      "date": "2026-11-28"
     }
   },
   "topics": [
@@ -255,6 +280,26 @@
     },
     {
       "title": "YouTube içerik üreticileri için AI desteği",
+      "date": "2026-11-28"
+    },
+    {
+      "title": "Android'de Yapay Zekayla Kendi Widget'ını Yap",
+      "date": "2026-11-28"
+    },
+    {
+      "title": "Yapay Zekanız Arkanızdan Grup Sohbeti Yapıyor",
+      "date": "2026-11-28"
+    },
+    {
+      "title": "2 Milyar Profili Tarayan Yapay Zeka Motoru: Ploid",
+      "date": "2026-11-28"
+    },
+    {
+      "title": "GPT 6.2 Astra Tarihi Bir Gizemi Aydınlattı",
+      "date": "2026-11-28"
+    },
+    {
+      "title": "Teknoloji Dünyasında Yükselen Ses: 'Yapay Zekadan Korkuyorum'",
       "date": "2026-11-28"
     }
   ]

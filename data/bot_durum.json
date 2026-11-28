@@ -1,6 +1,6 @@
 {
   "sahip": 6303967526,
-  "offset": 203154956,
+  "offset": 203154958,
   "bekleyen": {},
   "gecmis": [
     {
@@ -29,6 +29,15 @@
         "instagram": true
       },
       "zaman": "2026-11-28T05:56:36"
+    },
+    {
+      "id": "2026-11-28_01_android-de-yapay-zekayla-kendi-widget-in_tr",
+      "karar": "onay",
+      "sonuc": {
+        "youtube": true,
+        "instagram": true
+      },
+      "zaman": "2026-11-28T07:31:06"
     }
   ],
   "ses_isleri": [],
